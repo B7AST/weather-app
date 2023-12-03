@@ -1,14 +1,27 @@
 import React from 'react'
-// import PropTypes from 'prop-types'
+import PropTypes from 'prop-types'
 import './WeatherInfo.css'
 import clockIcon from '../WeatherInfo/clock_2088617.png'
 import calendarIcon from '../WeatherInfo//calendar_3248380.png'
-import { useNavigate } from 'react-router-dom'
+import { Route, useNavigate } from 'react-router-dom'
+import { useQuery } from "@tanstack/react-query";
+import { FetchForecastCurrent } from '../../API'
+import { toast } from "react-toastify";
 
-function WeatherInfo(props) {
+function WeatherInfo(location) {
 
-    const navigate = useNavigate()
-    
+    const navigate = useNavigate();
+    console.log("weather-info", location)
+    // const {data:currentInfo, isLoading:currentInfoLoading} = useQuery({
+    //     queryKey: ["current"],
+    //     queryFn: () => FetchForecastCurrent(),
+    //     onSuccess: toast.success("Data success"),
+    //     onError: (error) => console.log("error", error),
+
+    // })
+
+    // console.log("data", currentInfo)
+
     return(
         <div>
             <div className="weather-info">
@@ -33,6 +46,8 @@ function WeatherInfo(props) {
     )
 }
 
-WeatherInfo.propTypes = {}
+WeatherInfo.propTypes = {
+    location:PropTypes.string.isRequired
+}
 
 export default WeatherInfo
