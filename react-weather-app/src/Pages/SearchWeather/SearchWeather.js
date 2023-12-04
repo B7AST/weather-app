@@ -1,26 +1,58 @@
-import { useNavigate, useHistory } from 'react-router-dom'
-import { useState } from 'react'
+import React, { useState } from 'react';
+import axios from 'axios';
 import "./SearchWeather.css"
 import searchIcon from "../SearchWeather/search-icon-png-9969.png"
+import clockIcon from '../SearchWeather/clock_2088617.png'
+import calendarIcon from '../SearchWeather//calendar_3248380.png'
 
 function SearchWeather() {
-    const navigate = useNavigate()
-    // const history = useHistory()
-
+    const [data, setData] = useState({})
     const [location, setLocation] = useState('')
-    console.log(location)
+
+    const apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${location}&appid=951c0ac3ef8b0ab8bf3216ac874503fc`
+
+    const searchLocation = (event) => {
+        axios.get(apiUrl).then((response) => {
+            setData(response.data)
+            console.log(response.data)
+        })
+    }
 
     return (
-        <div className="search-weather">
-            <input type="text" value={location} onChange={(e) => setLocation(e.target.value)} placeholder="enter your location" className="search-weather-input"></input>
-            <button className="search-weather-btn" onClick={() => {navigate(`/weather-info`
-            // ,{
-            //     state:{location}
-            // }
-            )}}>
+        <div className="main-wrapper">
+            <div className="element-wrapper">
 
-                <img src={searchIcon} alt="search icon"></img>
-            </button>
+                {/* search weather area */}
+                <div className="search-weather">
+                    <input type="text" value={location} onChange={event => setLocation(event.target.value)} placeholder="enter your location..." className="search-weather-input"></input>
+                    <button className="search-weather-btn" onClick={searchLocation}>
+                        <img src={searchIcon} alt="search icon"></img>
+                    </button>
+
+                </div>
+
+                {/* weather info area */}
+                <div className="weather-info">
+                    <div className="location">
+                        {data.name ? <p>{data.name}</p> : "--"}
+                    </div>
+                    <div className="temp">
+                        {data.main ? <p>{data.main.temp}</p> : "--"}
+                    </div>
+                    <div className="description">
+                        {data.weather ? <p>{data.weather[0].main}</p> : "--"}
+                    </div>
+                    <div className="feels">
+                        {data.main ? <p>{data.main.feels_like}</p> : "--"}
+                    </div>
+                    <div className="humidity">
+                        {data.main ? <p>{data.main.humidity}%</p> : "--"}
+                    </div>
+                    <div className="wind">
+                        {data.wind ? <p>{data.wind.speed}MPH</p> : "--"}
+                    </div>
+                </div>
+            </div>
         </div>
     )
 }
