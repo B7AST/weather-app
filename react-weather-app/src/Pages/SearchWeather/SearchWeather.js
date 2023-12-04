@@ -34,22 +34,28 @@ function SearchWeather() {
                 {/* weather info area */}
                 <div className="weather-info">
                     <div className="location">
+                        <h2>Location</h2>
                         {data.name ? <p>{data.name}</p> : "--"}
                     </div>
                     <div className="temp">
-                        {data.main ? <p>{data.main.temp}</p> : "--"}
+                        {data.main ? <h2>{data.main.temp}</h2> : "--"}
                     </div>
                     <div className="description">
                         {data.weather ? <p>{data.weather[0].main}</p> : "--"}
                     </div>
-                    <div className="feels">
-                        {data.main ? <p>{data.main.feels_like}</p> : "--"}
-                    </div>
-                    <div className="humidity">
-                        {data.main ? <p>{data.main.humidity}%</p> : "--"}
-                    </div>
-                    <div className="wind">
-                        {data.wind ? <p>{data.wind.speed}MPH</p> : "--"}
+                    <div  className='secondary-info'>
+                        <div className="feels">
+                            {data.main ? <p>{data.main.feels_like}</p> : "--"}
+                            <p>Feels Like</p>
+                        </div>
+                        <div className="humidity">
+                            {data.main ? <p>{data.main.humidity}%</p> : "--"}
+                            <p>Humidity</p>
+                        </div>
+                        <div className="wind">
+                            {data.wind ? <p>{data.wind.speed}MPH</p> : "--"}
+                            <p>Wind</p>
+                        </div>
                     </div>
                 </div>
             </div>

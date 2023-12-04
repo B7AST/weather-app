@@ -2,11 +2,19 @@
     width: 100%;
     height: 100vh;
     background-image: linear-gradient(180deg, aliceblue, white);
+    margin: 0 auto;
 }
 
 .element-wrapper {
     max-width: 700px;
     margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid black;
+    border-radius: 1rem;
+    background: url("./25501.jpg") no-repeat center center/cover;
 }
 
 .search-weather {
@@ -28,7 +36,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 3px;
+    /* padding: 3px; */
     width: 5rem;
     border-radius: 0 1rem 1rem 0;
 }
@@ -42,6 +50,36 @@
     width: 28rem;
 }
 
-.temp p::after {
+.temp h2::after {
     content: "\00B0 F";
+}
+
+.secondary-info {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin: 2rem auto;
+}
+
+.weather-info p, h2{
+    margin-top: 1rem;
+}
+
+.secondary-info p{
+    margin-top: 0.1rem;
+}
+.secondary-info p:nth-child(2){
+    font-weight: 700;
+}
+
+.secondary-info {
+    margin-top: 5rem;
+    background-color: rgba(255, 255, 255, 0.5);
+    border: 1px solid black;
+    border-radius: 5px;
+    padding: 1rem;
+}
+
+.location p {
+    margin-top: unset;
 }
